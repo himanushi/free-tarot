@@ -29,6 +29,16 @@ const horizontalSpacing =
   (totalWidth - cardsPerRow * cardWidth) / (cardsPerRow - 1);
 
 function shuffle() {
+  // biome-ignore lint/complexity/noForEach: <explanation>
+  cards.forEach((card) => {
+    app.stage.removeChild(card.card);
+    card.card.destroy();
+  });
+
+  cards = [];
+  numbers = [...Array(22).keys()];
+  movedCardsNo.clear();
+
   for (let i = 0; i < 22; i++) {
     const x =
       paddingLeft +
@@ -119,5 +129,5 @@ shuffleText.x = 100;
 shuffleText.y = 0;
 shuffleText.eventMode = "static";
 shuffleText.cursor = "pointer";
-shuffleText.on("pointerdown", () => window.open("/", "_self"));
+shuffleText.on("pointerdown", shuffle);
 app.stage.addChild(shuffleText);
