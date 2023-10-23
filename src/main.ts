@@ -1,5 +1,5 @@
 import * as PIXI from "pixi.js";
-import { cardTextures } from "./textures";
+import { backCardTexture, cardTextures } from "./textures";
 
 const app: any = new PIXI.Application({
   background: "#1099bb",
@@ -8,8 +8,8 @@ const app: any = new PIXI.Application({
 
 document.body.appendChild(app.view);
 
-const cardWidth = 81;
-const cardHeight = 142;
+const cardWidth = 70;
+const cardHeight = 120;
 const margin = 10;
 const paddingLeft = 50;
 const paddingTop = 80;
@@ -18,7 +18,7 @@ const cardsPerRow = Math.floor(totalWidth / (cardWidth + margin));
 const horizontalSpacing =
   (totalWidth - cardsPerRow * cardWidth) / (cardsPerRow - 1);
 
-for (let i = 0; i < 1; i++) {
+for (let i = 0; i < 22; i++) {
   const x =
     paddingLeft + margin + (i % cardsPerRow) * (cardWidth + horizontalSpacing);
   const y =
