@@ -8,15 +8,15 @@ const app: any = new PIXI.Application({
 
 document.body.appendChild(app.view);
 
-const cardWidth = 77; // Assuming a card width of 70 pixels
-const cardHeight = 143; // Assuming a card height of 120 pixels
-const margin = 30; // Assuming a margin of 10 pixels between cards
-const paddingLeft = 50; // Assuming a left padding of 20 pixels
-const paddingTop = 80; // Assuming a top padding of 20 pixels
-const totalWidth = app.screen.width - 2 * margin - paddingLeft; // Total usable width
-const cardsPerRow = Math.floor(totalWidth / (cardWidth + margin)); // Number of cards per row
+const cardWidth = 55;
+const cardHeight = 100;
+const margin = 10;
+const paddingLeft = 30;
+const paddingTop = 60;
+const totalWidth = app.screen.width - 2 * margin - paddingLeft;
+const cardsPerRow = Math.floor(totalWidth / (cardWidth + margin));
 const horizontalSpacing =
-  (totalWidth - cardsPerRow * cardWidth) / (cardsPerRow - 1); // Spacing between cards
+  (totalWidth - cardsPerRow * cardWidth) / (cardsPerRow - 1);
 
 for (let i = 0; i < 22; i++) {
   const x =
@@ -32,7 +32,7 @@ function createCard(x: any, y: any, texture: any) {
   card.eventMode = "static";
   card.cursor = "pointer";
   card.anchor.set(0.5);
-  card.scale.set(0.1);
+  card.scale.set(0.07);
 
   card.on("pointerdown", onDragStart, card);
 
