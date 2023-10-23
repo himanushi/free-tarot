@@ -1,10 +1,9 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
+import * as PIXI from "pixi.js";
 
-// biome-ignore lint/style/noNonNullAssertion: <explanation>
-ReactDOM.createRoot(document.getElementById("root")!).render(
-	<React.StrictMode>
-		<App />
-	</React.StrictMode>,
-);
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+const app: any = new PIXI.Application({
+  background: "#1099bb",
+  resizeTo: window,
+});
+
+document.body.appendChild(app.view);
