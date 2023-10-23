@@ -1,0 +1,10 @@
+{
+	"emeraldwalk.runonsave": {
+		"commands": [
+			{
+				"match": ".*$",
+				"cmd": "npx @biomejs/biome check --apply ${file}"
+			}
+		]
+	}
+}
