@@ -1,5 +1,5 @@
 import * as PIXI from "pixi.js";
-import card0Image from "./assets/cards/1.jpg";
+import card0Image from "./assets/cards/1.png";
 import card1Image from "./assets/cards/2.jpg";
 import card2Image from "./assets/cards/3.jpg";
 import card3Image from "./assets/cards/4.jpg";
