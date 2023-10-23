@@ -1,7 +1,10 @@
 import * as PIXI from "pixi.js";
 import { cardTextures } from "./textures";
 
-const app = new PIXI.Application({ background: "#1099bb", resizeTo: window });
+const app: any = new PIXI.Application({
+  background: "#1099bb",
+  resizeTo: window,
+});
 
 document.body.appendChild(app.view);
 
@@ -13,7 +16,7 @@ for (let i = 0; i < 22; i++) {
   );
 }
 
-function createCard(x, y, texture) {
+function createCard(x: any, y: any, texture: any) {
   const card = new PIXI.Sprite(texture);
 
   card.eventMode = "static";
@@ -29,14 +32,14 @@ function createCard(x, y, texture) {
   app.stage.addChild(card);
 }
 
-let dragTarget = null;
+let dragTarget: any = null;
 
 app.stage.eventMode = "static";
 app.stage.hitArea = app.screen;
 app.stage.on("pointerup", onDragEnd);
 app.stage.on("pointerupoutside", onDragEnd);
 
-function onDragMove(event) {
+function onDragMove(event: any) {
   if (dragTarget) {
     dragTarget.parent.toLocal(event.global, null, dragTarget.position);
   }
