@@ -1,48 +1,32 @@
 import * as PIXI from "pixi.js";
+import { cardTextures } from "./textures";
 
 const app = new PIXI.Application({ background: "#1099bb", resizeTo: window });
 
 document.body.appendChild(app.view);
 
-// create a texture from an image path
-const texture = PIXI.Texture.from("https://pixijs.com/assets/bunny.png");
-
-// Scale mode for pixelation
-texture.baseTexture.scaleMode = PIXI.SCALE_MODES.NEAREST;
-
-for (let i = 0; i < 10; i++) {
-  createBunny(
-    Math.floor(Math.random() * app.screen.width),
-    Math.floor(Math.random() * app.screen.height),
+for (let i = 0; i < 22; i++) {
+  createCard(
+    100 + (i % 11) * 70,
+    Math.floor(i / 11) * 120 + 100,
+    cardTextures[i],
   );
 }
 
-function createBunny(x, y) {
-  // create our little bunny friend..
-  const bunny = new PIXI.Sprite(texture);
+function createCard(x, y, texture) {
+  const card = new PIXI.Sprite(texture);
 
-  // enable the bunny to be interactive... this will allow it to respond to mouse and touch events
-  bunny.eventMode = "static";
+  card.eventMode = "static";
+  card.cursor = "pointer";
+  card.anchor.set(0.5);
+  card.scale.set(0.05);
 
-  // this button mode will mean the hand cursor appears when you roll over the bunny with your mouse
-  bunny.cursor = "pointer";
+  card.on("pointerdown", onDragStart, card);
 
-  // center the bunny's anchor point
-  bunny.anchor.set(0.5);
+  card.x = x;
+  card.y = y;
 
-  // make it a bit bigger, so it's easier to grab
-  bunny.scale.set(3);
-
-  // setup events for mouse + touch using
-  // the pointer events
-  bunny.on("pointerdown", onDragStart, bunny);
-
-  // move the sprite to its designated position
-  bunny.x = x;
-  bunny.y = y;
-
-  // add it to the stage
-  app.stage.addChild(bunny);
+  app.stage.addChild(card);
 }
 
 let dragTarget = null;
@@ -59,10 +43,6 @@ function onDragMove(event) {
 }
 
 function onDragStart() {
-  // store a reference to the data
-  // the reason for this is because of multitouch
-  // we want to track the movement of this particular touch
-  // this.data = event.data;
   this.alpha = 0.5;
   dragTarget = this;
   app.stage.on("pointermove", onDragMove);
