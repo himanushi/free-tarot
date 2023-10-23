@@ -28,17 +28,19 @@ const cardsPerRow = Math.floor(totalWidth / (cardWidth + margin));
 const horizontalSpacing =
   (totalWidth - cardsPerRow * cardWidth) / (cardsPerRow - 1);
 
-for (let i = 0; i < 22; i++) {
-  // cards = [];
-  // numbers = [...Array(22).keys()];
-  // movedCardsNo.clear();
-
-  const x =
-    paddingLeft + margin + (i % cardsPerRow) * (cardWidth + horizontalSpacing);
-  const y =
-    paddingTop + margin + Math.floor(i / cardsPerRow) * (cardHeight + margin);
-  createCard(x, y);
+function shuffle() {
+  for (let i = 0; i < 22; i++) {
+    const x =
+      paddingLeft +
+      margin +
+      (i % cardsPerRow) * (cardWidth + horizontalSpacing);
+    const y =
+      paddingTop + margin + Math.floor(i / cardsPerRow) * (cardHeight + margin);
+    createCard(x, y);
+  }
 }
+
+shuffle();
 
 function createCard(x: number, y: number) {
   const card = new PIXI.Sprite(backCardTexture);
@@ -55,7 +57,7 @@ function createCard(x: number, y: number) {
   const cardInfo = {
     card,
     no,
-    isReverse: true,
+    isReverse: Math.random() > 0.5,
   };
 
   cards.push(cardInfo);
@@ -94,20 +96,28 @@ function onDragEnd() {
 }
 
 function openCard() {
-  console.log(cards);
-  console.log(movedCardsNo);
   // biome-ignore lint/complexity/noForEach: <explanation>
   movedCardsNo.forEach((no) => {
     const cardInfo = cards.find((card) => card.no === no);
-    cardInfo!.card.texture = cardTextures[no];
+    if (cardInfo) {
+      cardInfo.card.texture = cardTextures[no];
+      cardInfo.card.rotation = cardInfo.isReverse ? Math.PI : 0;
+    }
   });
 }
 
-const basicText = new PIXI.Text("Open");
-basicText.x = 10;
-basicText.y = 0;
-basicText.eventMode = "static";
-basicText.cursor = "pointer";
-basicText.on("pointerdown", openCard);
+const openText = new PIXI.Text("Open");
+openText.x = 10;
+openText.y = 0;
+openText.eventMode = "static";
+openText.cursor = "pointer";
+openText.on("pointerdown", openCard);
+app.stage.addChild(openText);
 
-app.stage.addChild(basicText);
+const shuffleText = new PIXI.Text("Shuffle");
+shuffleText.x = 100;
+shuffleText.y = 0;
+shuffleText.eventMode = "static";
+shuffleText.cursor = "pointer";
+shuffleText.on("pointerdown", () => window.open("/", "_self"));
+app.stage.addChild(shuffleText);
