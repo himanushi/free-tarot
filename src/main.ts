@@ -8,11 +8,11 @@ const app: any = new PIXI.Application({
 
 document.body.appendChild(app.view);
 
-const cardWidth = 70;
+const cardWidth = 68;
 const cardHeight = 120;
 const margin = 10;
-const paddingLeft = 50;
-const paddingTop = 80;
+const paddingLeft = 40;
+const paddingTop = 60;
 const totalWidth = app.screen.width - 2 * margin - paddingLeft;
 const cardsPerRow = Math.floor(totalWidth / (cardWidth + margin));
 const horizontalSpacing =
