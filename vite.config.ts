@@ -34,7 +34,7 @@ export default defineConfig({
         "./assets/cards/21.png",
         "./assets/cards/22.png",
         "./assets/cards/back.png",
-      ], // <== you can include other assets
+      ],
       manifest: {
         name: "Tarot Card App",
         short_name: "Tarot App",
@@ -42,19 +42,19 @@ export default defineConfig({
         theme_color: "#ffffff",
         icons: [
           {
-            src: "path-to-your-icon.png",
+            src: "./assets/icon.png",
             sizes: "192x192",
             type: "image/png",
           },
           {
-            src: "path-to-your-icon.png",
+            src: "./assets/icon.png",
             sizes: "512x512",
             type: "image/png",
           },
         ],
       },
       workbox: {
-        globPatterns: ["**/*"], // Adjust accordingly for your files
+        globPatterns: ["**/*"],
       },
     }),
   ],
