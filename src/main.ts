@@ -10,7 +10,7 @@ document.body.appendChild(app.view);
 
 const cardWidth = 68;
 const cardHeight = 120;
-const margin = 10;
+const margin = 5;
 const paddingLeft = 40;
 const paddingTop = 60;
 const totalWidth = app.screen.width - 2 * margin - paddingLeft;
